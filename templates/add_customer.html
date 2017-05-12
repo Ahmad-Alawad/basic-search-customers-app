@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div id="add_customer">
+        <h1>Add Customer Form</h1>
+        <form action="/process_adding_customer">
+            First Name<br>
+            <input type="text" name="fname" required><br>
+            Last Name<br>
+            <input type="text" name="lname" required><br>
+            Zipcode<br>
+            <input type="text" name="zipcode" required>
+            <br>
+            <br>
+            <input type="submit" name="addcustomer">
+        </form>
+	</div>
+
+{% endblock %}

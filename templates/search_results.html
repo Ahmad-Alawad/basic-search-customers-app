@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div id="resultspage">
+        {% if customer %}
+        {% endif %}
+
+        {% if customer %}
+          
+          <h1>Customer Info:</h1>
+          <p>First Name: {{ customer.fname }} </p>
+          <p>Last Name: {{ customer.lname }} </p>
+          <p>Zip Code: {{ customer.zipcode }} </p>
+
+        {% else %}
+
+          <p>Sorry not found!!!</p>
+
+        {% endif %}
+
+	</div>
+
+{% endblock %}
