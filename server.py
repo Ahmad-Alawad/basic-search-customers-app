@@ -11,9 +11,6 @@ app = Flask(__name__)
 # Required to use Flask sessions and the debug toolbar
 app.secret_key = "ABC"
 
-# Normally, if you use an undefined variable in Jinja2, it fails
-# silently. This is horrible. Fix this so that, instead, it raises an
-# error.
 app.jinja_env.undefined = StrictUndefined
 
 
@@ -29,11 +26,8 @@ def search():
     # 1. get form inputs (fname, lname)
     fname = request.args.get('fname')
     lname = request.args.get('lname')
-    print "First:", fname
-    print "Last:", lname
 
     # 2. Search DB using SQLAlchemy for fname and lname (Table name is customerts)
-    # all_customers = db.session.query(Customer).all()
     try:
         customer = db.session.query(Customer).filter(Customer.fname==fname).filter(Customer.lname==lname).one()
     except:
@@ -42,10 +36,6 @@ def search():
 
     # 3. Display search results
     return render_template("search_results.html", customer=customer)
-    # if customer:
-    #     render_template("search_results.html", customer=customer)
-    # else:
-    #     render_template("search_results.html", customer="Customer not found")
 
 
 @app.route('/add-customer')
@@ -88,21 +78,3 @@ if __name__ == "__main__":
     DebugToolbarExtension(app)
 
     app.run(port=5001, host='0.0.0.0')
-
-
-
-
-
-
-# @app.route('/restaurants')
-# def map():
-#     """Show map of bears."""
-
-#     return render_template("map.html")
-
-
-# @app.route('/restaurants.json')
-# def restaurants_info():
-#     """JSON information about restaurants."""
-
-#     return jsonify(restaurants)
