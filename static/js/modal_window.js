@@ -26,6 +26,9 @@ function addDataToHTML(customers){
     $('#ulCustomers').append("<li> Customer: <br>First: " + first + "<br>" + "Last: "+ last + "</li>");
  
   }
+
+  $('.modal-content').css("background-image", "url(/static/img/colored_cats.jpg)"); 
+  $('.modal-content').css("background-size", "cover");
 }
 
 // Step 2:
