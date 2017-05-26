@@ -4,6 +4,16 @@ from flask import Flask, jsonify, render_template, request, flash, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 
 from model import connect_to_db, db, Customer
+# from helper_functions import get_all_customers
+
+
+
+def get_all_customers():
+    """Access DB and get a list of all customers objects"""
+
+    all_customers = Customer.query.all()
+    return all_customers
+
 
 
 app = Flask(__name__)
@@ -17,7 +27,10 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def index():
     """Homepage."""
-    return render_template("homepage.html")
+
+
+    customers_list = get_all_customers()
+    return render_template("homepage.html", customers=customers_list)
 
 @app.route('/search')
 def search():
@@ -65,6 +78,18 @@ def add_customer_to_db():
     flash("Customer was addded successfully!!!")
 
     return redirect("/")
+
+
+@app.route('/all_customers.json')
+def get_all_customers_view():
+    """Return all customers in json object"""
+
+    all_customers = get_all_customers()
+    customers_list = []
+    for customer in all_customers:
+        customer_dict = {'fname':customer.fname , 'lname':customer.lname}
+        customers_list.append(customer_dict)
+    return jsonify(customers_list)
 
 if __name__ == "__main__":
     app.debug = True

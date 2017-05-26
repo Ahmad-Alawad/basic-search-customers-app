@@ -11,5 +11,60 @@
             <input type="submit" name="search">
         </form>
 	</div>
+    <div class="container">
+  <h2>All Customers</h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Show using Jinja</button>
+  <button id="show-ajax" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ajaxModal">Show using AJAX</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Customers List</h4>
+        </div>
+        <div class="modal-body">
+          <ul>
+            {% for customer in customers %}
+              <li> Customer: <br>First: {{ customer.fname }} <br>Last: {{ customer.lname }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="modal fade" id="ajaxModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Customers List</h4>
+        </div>
+        <div class="modal-body">
+          <ul id="ulCustomers">
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="/static/js/modal_window.js"></script>
 
 {% endblock %}
