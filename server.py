@@ -97,9 +97,11 @@ if __name__ == "__main__":
     # make sure templates, etc. are not cached in debug mode
     app.jinja_env.auto_reload = app.debug  
 
-    connect_to_db(app)
+    # IMPORTANT NOTE
+    # Uncomment the following line when you run the server for the first time
+    # connect_to_db(app)
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)
 
-    app.run(port=5001, host='0.0.0.0')
+    app.run(port=5000, host='0.0.0.0')

@@ -1,4 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
+# from server import app
+
+
+
 
 db = SQLAlchemy()
 
@@ -7,7 +11,7 @@ db = SQLAlchemy()
 class Customer(db.Model):
     """Customers table"""
 
-    __tablename__ = "customers"
+    __tablename__ = "customer"
 
     id = db.Column(db.Integer,
                        primary_key=True,
@@ -22,10 +26,6 @@ def connect_to_db(app):
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)
+    db.create_all()
+    db.session.commit()
 
-
-if __name__ == "__main__":
-
-    from server import app
-    connect_to_db(app)
-    print "Connected to DB."
